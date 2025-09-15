@@ -1,0 +1,12 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "Simple CRUD app for employee management",
+  "main": "employee-app.js",
+  "scripts": {
+    "start": "node employee-app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

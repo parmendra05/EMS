@@ -1,0 +1,114 @@
+EMPLOYEE MANAGEMENT SYSTEM - APPLICATION FLOW
+=====================================================
+
+This document explains how the Employee Management System works step by step.
+
+1. APPLICATION STARTUP
+   -------------------
+   - Run: node employee-app.js
+   - Express server starts on port 3000
+   - Dummy employee data is loaded into memory (3 employees)
+   - Server displays available API endpoints
+
+2. DATA STRUCTURE
+   --------------
+   Each employee has:
+   - id: unique number
+   - name: employee name
+   - position: job title
+   - salary: annual salary
+
+3. API ENDPOINTS & FLOW
+   --------------------
+
+   A) GET /employees (Read All)
+      - Client sends GET request to /employees
+      - Server returns all employees from memory
+      - Response: JSON array of all employees
+
+   B) GET /employees/:id (Read One)
+      - Client sends GET request with employee ID
+      - Server searches for employee by ID
+      - If found: returns employee data
+      - If not found: returns 404 error
+
+   C) POST /employees (Create)
+      - Client sends POST request with employee data
+      - Server validates required fields (name, position, salary)
+      - If valid: creates new employee with auto-generated ID
+      - Adds employee to memory array
+      - Returns created employee data
+
+   D) PUT /employees/:id (Update)
+      - Client sends PUT request with employee ID and update data
+      - Server finds employee by ID
+      - If found: updates provided fields only
+      - If not found: returns 404 error
+      - Returns updated employee data
+
+   E) DELETE /employees/:id (Delete)
+      - Client sends DELETE request with employee ID
+      - Server finds employee by ID
+      - If found: removes from memory array
+      - If not found: returns 404 error
+      - Returns success message with deleted employee data
+
+4. REQUEST/RESPONSE FLOW
+   ---------------------
+   Client Request → Express Router → Find/Modify Data → Send Response
+
+5. ERROR HANDLING
+   --------------
+   - Missing required fields: 400 Bad Request
+   - Employee not found: 404 Not Found
+   - Invalid data: Validation errors
+
+6. TESTING THE APPLICATION
+   -----------------------
+   Method 1: Use test-api.js
+   - Run: node test-api.js (after starting server)
+   - Automatically tests all CRUD operations
+
+   Method 2: Manual testing with curl
+   - GET: curl http://localhost:3000/employees
+   - POST: curl -X POST -H "Content-Type: application/json" -d '{"name":"John","position":"Dev","salary":50000}' http://localhost:3000/employees
+
+   Method 3: Use Postman or browser for GET requests
+
+7. DATA PERSISTENCE
+   ----------------
+   - Data stored in memory only
+   - Data resets when server restarts
+   - No database required for this demo
+
+8. TYPICAL USER WORKFLOW
+   ---------------------
+   1. Start server
+   2. View all employees (GET /employees)
+   3. Add new employee (POST /employees)
+   4. Update employee details (PUT /employees/:id)
+   5. Delete employee (DELETE /employees/:id)
+   6. Repeat as needed
+
+9. GIT WORKFLOW
+   ------------
+   Initialize Git repository:
+   - git init
+   - git add .
+   - git commit -m "Initial commit"
+   
+   Files tracked by Git:
+   - employee-app.js (main application)
+   - package.json (dependencies)
+   - test-api.js (test script)
+   - EMPLOYEE_README.md (documentation)
+   - appFlow.txt (this file)
+   - .gitignore (Git ignore rules)
+   
+   Files ignored by Git:
+   - node_modules/ (dependencies folder)
+   - *.log (log files)
+   - .env (environment variables)
+   - IDE and OS specific files
+
+This is a complete CRUD (Create, Read, Update, Delete) application demonstrating basic REST API principles with Node.js and Express.js.
